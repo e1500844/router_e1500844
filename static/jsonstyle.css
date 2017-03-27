@@ -1,0 +1,22 @@
+@CHARSET "ISO-8859-1";
+body {
+    background-color: ;
+}
+div.buttons {
+    position:absolute;
+    left:180px;
+}
+div.select {
+	position:absolute;
+	left:8px;
+}
+button{
+	width: 6em;  height: 2em;
+}
+select{
+	width: 6em;
+}
+textarea{
+	position:absolute;
+	top:40px;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="jsonstyle.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="select">
+	<select>
+		<option value="wifi">wifi</option>
+	</select>
+	<select>
+		<option value="1">1</option>
+		<option value="2">2</option>
+	</select>
+</div>
+	<textarea rows="8" cols="70" id="ta1">{"crypt":0,"flag":0,"iface_":"wlan0","misc":382,"missedbeacon":0,"nwid":0,"qlevel":-62,"qlink":48,"retry":1,"snr":-256,"status":"0000","timestamp":1488736842000,"we22":null}
+</textarea>
+	<div class="buttons">
+		<button type="button" onclick="rest('get')">Get</button>
+		<button type="button" onclick="rest('post')">Post</button>
+		<button type="button" onclick="rest('delete')">Delete</button>
+		<button type="button" onclick="rest('put')">Put</button>
+		<button type="button" onclick="rest('all')">Get all</button>
+	</div>
+
+	<script>
+		function rest(method2) {
+			var json = $("#ta1").val();
+			if (method2 == "get" || method2 == "all") {
+				json = "";
+			}
+			var urli = "/wifi";
+			if(method2 == "all"){
+				urli = "wifi/all";
+			}
+			$.ajax({
+				type : method2,
+				url : urli,
+				// The key needs to match your method's input parameter (case-sensitive).
+				data : json,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				success : function(data) {
+					if(method2 == "delete"){
+						alert("ASDFASDF");
+					} else {
+					alert(JSON.stringify(data));
+					$("#ta1").val(JSON.stringify(data));
+					console.log(JSON.stringify(data));
+					}},
+				failure : function(errMsg) {
+					alert(errMsg);
+				}
+			});
+		}
+	</script>
+</body>
+</html>
