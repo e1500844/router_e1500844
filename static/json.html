@@ -2,19 +2,38 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="jsonstyle.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<title>Otsikko</title>
+<!-- <link rel="stylesheet" type="text/css" href="jsonstyle.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+function fill(){
+	$.ajax({
+	type: "GET",
+	url: "wifi/all",
+	dataType: "json",
+	contentType : "application/json; charset=utf-8",		
+	success: function (idveto) {
+			var kaikki = JSON.stringify(idveto);
+			var parsekaikki = JSON.parse(kaikki);
+			var length = Object.keys(parsekaikki).length;
+			var iidee = "";
+			for(var i=0;i<length;i++){
+				iidee = parsekaikki[i].id;
+				d3.select(".iidee").append("option").attr("value", iidee).text(iidee);
+			}
+		}
+	});
+
+}
+</script>
 </head>
-<body>
+<body onload="fill()">
 <div class="select">
 	<select>
 		<option value="wifi">wifi</option>
 	</select>
-	<select>
-		<option value="1">1</option>
-		<option value="2">2</option>
+	<select class="iidee">
 	</select>
 </div>
 	<textarea rows="8" cols="70" id="ta1">{"crypt":0,"flag":0,"iface_":"wlan0","misc":382,"missedbeacon":0,"nwid":0,"qlevel":-62,"qlink":48,"retry":1,"snr":-256,"status":"0000","timestamp":1488736842000,"we22":null}
@@ -24,7 +43,7 @@
 		<button type="button" onclick="rest('post')">Post</button>
 		<button type="button" onclick="rest('delete')">Delete</button>
 		<button type="button" onclick="rest('put')">Put</button>
-		<button type="button" onclick="rest('all')">Get all</button>
+		<button type="button" onclick="rest2('all')">Get all</button>
 	</div>
 
 	<script>
@@ -45,18 +64,16 @@
 				contentType : "application/json; charset=utf-8",
 				dataType : "json",
 				success : function(data) {
-					if(method2 == "delete"){
-						alert("ASDFASDF");
-					} else {
 					alert(JSON.stringify(data));
 					$("#ta1").val(JSON.stringify(data));
 					console.log(JSON.stringify(data));
-					}},
+					},
 				failure : function(errMsg) {
 					alert(errMsg);
 				}
 			});
 		}
+
 	</script>
 </body>
 </html>
