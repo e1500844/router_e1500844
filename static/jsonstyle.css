@@ -3,20 +3,25 @@ body {
     background-color: ;
 }
 div.buttons {
-    position:absolute;
-    left:180px;
+    position: static;
+    border-style: solid;
+    border-width: 1x;
+    border-color: grey;
+    width: 45%;
 }
 div.select {
-	position:absolute;
+	position: static;
 	left:8px;
 }
 button{
-	width: 6em;  height: 2em;
+	width: 6em;  
+	height: 2em;
 }
 select{
 	width: 6em;
 }
 textarea{
-	position:absolute;
+	position: static;
 	top:40px;
+	width: 45%;
 }

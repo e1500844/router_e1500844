@@ -3,7 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Otsikko</title>
-<!-- <link rel="stylesheet" type="text/css" href="jsonstyle.css"> -->
+<link rel="stylesheet" type="text/css" href="jsonstyle.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
@@ -36,14 +36,14 @@ function fill(){
 	<select class="iidee">
 	</select>
 </div>
-	<textarea rows="8" cols="70" id="ta1">{"crypt":0,"flag":0,"iface_":"wlan0","misc":382,"missedbeacon":0,"nwid":0,"qlevel":-62,"qlink":48,"retry":1,"snr":-256,"status":"0000","timestamp":1488736842000,"we22":null}
+	<textarea rows="8" id="ta1">{"crypt":0,"flag":0,"iface_":"wlan0","misc":382,"missedbeacon":0,"nwid":0,"qlevel":-62,"qlink":48,"retry":1,"snr":-256,"status":"0000","timestamp":1488736842000,"we22":null}
 </textarea>
 	<div class="buttons">
 		<button type="button" onclick="rest('get')">Get</button>
 		<button type="button" onclick="rest('post')">Post</button>
 		<button type="button" onclick="rest('delete')">Delete</button>
 		<button type="button" onclick="rest('put')">Put</button>
-		<button type="button" onclick="rest2('all')">Get all</button>
+		<button type="button" onclick="restall('get')">Get all</button>
 	</div>
 
 	<script>
@@ -73,7 +73,23 @@ function fill(){
 				}
 			});
 		}
-
+		function restall(method3) {
+			$.ajax({
+				type : method3,
+				url : "wifi/all",
+				data : "",
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				success : function(data) {
+					alert(JSON.stringify(data));
+					$("#ta1").val(JSON.stringify(data));
+					console.log(JSON.stringify(data));
+					},
+				failure : function(errMsg) {
+					alert(errMsg);
+				}
+			});
+		}
 	</script>
 </body>
 </html>
