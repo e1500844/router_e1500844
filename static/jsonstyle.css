@@ -5,7 +5,7 @@ body {
 div.buttons {
     position: static;
     border-style: solid;
-    border-width: 1x;
+    border-width: thin;
     border-color: grey;
     width: 45%;
 }
@@ -22,6 +22,5 @@ select{
 }
 textarea{
 	position: static;
-	top:40px;
 	width: 45%;
 }

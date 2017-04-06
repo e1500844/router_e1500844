@@ -20,7 +20,7 @@ function fill(){
 			var iidee = "";
 			for(var i=0;i<length;i++){
 				iidee = parsekaikki[i].id;
-				d3.select(".iidee").append("option").attr("value", iidee).text(iidee);
+				d3.select("#wifiid").append("option").attr("value", iidee).text(iidee);
 			}
 		}
 	});
@@ -33,7 +33,7 @@ function fill(){
 	<select>
 		<option value="wifi">wifi</option>
 	</select>
-	<select class="iidee">
+	<select id="wifiid" class="iidee">
 	</select>
 </div>
 	<textarea rows="8" id="ta1">{"crypt":0,"flag":0,"iface_":"wlan0","misc":382,"missedbeacon":0,"nwid":0,"qlevel":-62,"qlink":48,"retry":1,"snr":-256,"status":"0000","timestamp":1488736842000,"we22":null}
@@ -49,16 +49,15 @@ function fill(){
 	<script>
 		function rest(method2) {
 			var json = $("#ta1").val();
-			if (method2 == "get" || method2 == "all") {
+			if (method2 == "get") {
 				json = "";
 			}
-			var urli = "/wifi";
-			if(method2 == "all"){
-				urli = "wifi/all";
-			}
+			//var id = $("#wifiid").val;
+			//console.log(id);
+			///wifi?id="+id,
 			$.ajax({
 				type : method2,
-				url : urli,
+				url : "/wifi",
 				// The key needs to match your method's input parameter (case-sensitive).
 				data : json,
 				contentType : "application/json; charset=utf-8",
