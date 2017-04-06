@@ -52,12 +52,11 @@ function fill(){
 			if (method2 == "get") {
 				json = "";
 			}
-			//var id = $("#wifiid").val;
-			//console.log(id);
+			var id = $("#wifiid").val();
 			///wifi?id="+id,
 			$.ajax({
 				type : method2,
-				url : "/wifi",
+				url : "/wifi?id="+id,
 				// The key needs to match your method's input parameter (case-sensitive).
 				data : json,
 				contentType : "application/json; charset=utf-8",
