@@ -2,15 +2,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Otsikko</title>
+<title>ADSL UI</title>
 <link rel="stylesheet" type="text/css" href="jsonstyle.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 function fill(){
+	var adsl = $("#adsl").val();
 	$.ajax({
 	type: "GET",
-	url: "wifi/all",
+	url: adsl+"/all",
 	dataType: "json",
 	contentType : "application/json; charset=utf-8",		
 	success: function (idveto) {
@@ -30,8 +31,10 @@ function fill(){
 </head>
 <body onload="fill()">
 <div class="select">
-	<select>
+	<select id="adsl" onchange="location.reload()">
 		<option value="wifi">wifi</option>
+		<option value="downstream">downstream</option>
+		<option value="upstream">upstream</option>
 	</select>
 	<select id="wifiid" class="iidee">
 	</select>
@@ -52,12 +55,12 @@ function fill(){
 			if (method2 == "get") {
 				json = "";
 			}
+
 			var id = $("#wifiid").val();
-			///wifi?id="+id,
+			var adsl = $("#adsl").val();
 			$.ajax({
 				type : method2,
-				url : "/wifi?id="+id,
-				// The key needs to match your method's input parameter (case-sensitive).
+				url : "/"+adsl+"?id="+id,
 				data : json,
 				contentType : "application/json; charset=utf-8",
 				dataType : "json",
@@ -72,9 +75,10 @@ function fill(){
 			});
 		}
 		function restall(method3) {
+			var adsl = $("#adsl").val();
 			$.ajax({
 				type : method3,
-				url : "wifi/all",
+				url : adsl+"/all",
 				data : "",
 				contentType : "application/json; charset=utf-8",
 				dataType : "json",

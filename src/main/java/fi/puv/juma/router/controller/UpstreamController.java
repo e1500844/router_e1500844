@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fi.puv.juma.router.model.Upstream;
-import fi.puv.juma.router.model.Wifi;
 import fi.puv.juma.router.repository.UpstreamRepository;
 
 @RestController
@@ -32,5 +31,21 @@ public class UpstreamController {
         return jsonUpstream;
     }
     
+	@RequestMapping(value = "/upstream", method = RequestMethod.DELETE)
+	public void deleteupstream(@RequestBody Upstream jsonUpstream) {
+		repository.delete(jsonUpstream);
+		// do business logic
+	}
+
+	@RequestMapping(value = "/upstream", method = RequestMethod.PUT)
+	public @ResponseBody Upstream updateUpstream(@RequestBody Upstream jsonUpstream) {
+		repository.save(jsonUpstream);
+		return jsonUpstream;
+	}
+	
+	@RequestMapping(value = "/upstream/all", method = RequestMethod.GET)
+	public Iterable<Upstream> get() {
+		return repository.findAll();
+	}
     
 }

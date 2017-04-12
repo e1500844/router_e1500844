@@ -19,9 +19,7 @@ import fi.puv.juma.router.repository.WifiRepository;
 
 //Sovellus käynnistetään tästä applikaationa. 
 //Sovellus käynnistää tomcat palvelimen oletuksena porttiin localhost:8080
-/*Kun sovelluksen käynnistää se etsii
- * 
- */
+
 @SpringBootApplication
 @Import (SwaggerConfig.class)
 public class Application {
